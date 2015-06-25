@@ -72,11 +72,8 @@ public class SoftwareAudioPlayerActivity extends MenuDrawerBaseActivity {
     protected void onMenuItemClicked(int position) {
         Cursor cursor = mAdapter.getCursor();
         cursor.moveToPosition(position);
-        String resolution = cursor.getString(cursor.getColumnIndex(MediaStore.Video.VideoColumns.RESOLUTION));
         long origId = cursor.getInt(cursor.getColumnIndex(VideoColumns._ID));
         String data = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA));
-        String width = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.WIDTH));
-        String height = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.HEIGHT));
         if (data != null) {
             stopVideo();
             playVideo(data);
@@ -88,7 +85,7 @@ public class SoftwareAudioPlayerActivity extends MenuDrawerBaseActivity {
     }
 
     private void playVideo(String path) {
-        path = "/sdcard/ImYours.m4a";
+//        path = "/sdcard/ImYours.m4a";
         mVideoSurfaceView.setVideoPath(path);
         mVideoSurfaceView.setMediaController(new MediaController(this));
         mVideoSurfaceView.start();

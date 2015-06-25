@@ -6,7 +6,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.provider.MediaStore.Video.VideoColumns;
+import android.provider.MediaStore.Audio.AudioColumns;
+import android.provider.MediaStore.MediaColumns;
 import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.jasonsoft.softwareaudioplayer.data.LoadThumbnailParams;
 import com.jasonsoft.softwareaudioplayer.data.LoadThumbnailResult;
 import com.jasonsoft.softwareaudioplayer.data.MenuDrawerItem;
 import com.jasonsoft.softwareaudioplayer.data.MenuDrawerCategory;
+import com.jasonsoft.softwareaudioplayer.Utils;
 
 import java.util.List;
 
@@ -79,14 +81,18 @@ public class MenuAdapter extends CursorAdapter {
             holder =  populateViewHolder(view);
         }
 
+        long duration = cursor.getLong(cursor.getColumnIndex(AudioColumns.DURATION));
+        String details = Utils.msToDisplayDuration(duration) + " - "
+                + cursor.getString(cursor.getColumnIndex(AudioColumns.ARTIST));
 
-        String details = cursor.getString(cursor.getColumnIndex(VideoColumns.DURATION)) + " - "
-                + cursor.getString(cursor.getColumnIndex(VideoColumns.RESOLUTION));
-        holder.title.setText(cursor.getString(cursor.getColumnIndex(VideoColumns.TITLE)));
+        holder.title.setText(cursor.getString(cursor.getColumnIndex(AudioColumns.TITLE)));
         holder.details.setText(details);
 
-//        long userId = cursor.getLong(cursor.getColumnIndex(VideoContact.COLUMN_CONTACT));
-        long origId = cursor.getInt(cursor.getColumnIndex(VideoColumns._ID));
+//        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.AlbumColumns.ALBUM_ART));
+//        android.util.Log.d("jason", "Album path:" + path);
+
+//        long userId = cursor.getLong(cursor.getColumnIndex(AudioContact.COLUMN_CONTACT));
+        long origId = cursor.getInt(cursor.getColumnIndex(AudioColumns._ID));
         loadThumbnail(origId, holder.thumbnailView);
     }
 //    @Override

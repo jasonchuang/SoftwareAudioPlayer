@@ -33,14 +33,11 @@ public abstract class MenuDrawerBaseActivity extends FragmentActivity implements
             "net.simonvt.menudrawer.samples.LeftDrawerSample.activePosition";
 
     // These are the Contacts rows that we will retrieve.
-    static final String[] VIDEO_SUMMARY_PROJECTION = new String[] {
-            MediaStore.Video.VideoColumns._ID,
-            MediaStore.Video.VideoColumns.TITLE,
-            MediaStore.Video.VideoColumns.ARTIST,
-            MediaStore.MediaColumns.WIDTH,
-            MediaStore.MediaColumns.HEIGHT,
-            MediaStore.Video.VideoColumns.DURATION,
-            MediaStore.Video.VideoColumns.RESOLUTION,
+    static final String[] AUDIO_SUMMARY_PROJECTION = new String[] {
+            MediaStore.MediaColumns._ID,
+            MediaStore.MediaColumns.TITLE,
+            MediaStore.Audio.AudioColumns.ARTIST,
+            MediaStore.Audio.AudioColumns.DURATION,
             MediaStore.MediaColumns.DATA
     };
 
@@ -110,14 +107,14 @@ public abstract class MenuDrawerBaseActivity extends FragmentActivity implements
 
 
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-//    Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+//    Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 //    String[] columns = {
-//                MediaStore.Video.VideoColumns._ID,
-//                        MediaStore.Video.VideoColumns.TITLE,
-//                                MediaStore.Video.VideoColumns.ARTIST
+//                MediaStore.Audio.AudioColumns._ID,
+//                        MediaStore.Audio.AudioColumns.TITLE,
+//                                MediaStore.Audio.AudioColumns.ARTIST
 //                                        };
 //
-//    String selection = MediaStore.Video.VideoColumns.DATA + "=?";
+//    String selection = MediaStore.Audio.AudioColumns.DATA + "=?";
 //    String selectionArgs[] = { "/mnt/sdcard/Movies/landscapes.mp4" };
 //
 //    Cursor cursor = context.getContentResolver().query(uri, columns, selection, selectionArgs, null);
@@ -133,7 +130,7 @@ public abstract class MenuDrawerBaseActivity extends FragmentActivity implements
         //            baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,
         //                    Uri.encode(mCurFilter));
         //        } else {
-        baseUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+        baseUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         //        }
 
         // Now create and return a CursorLoader that will take care of
@@ -142,8 +139,8 @@ public abstract class MenuDrawerBaseActivity extends FragmentActivity implements
             + Contacts.HAS_PHONE_NUMBER + "=1) AND ("
             + Contacts.DISPLAY_NAME + " != '' ))";
         return new CursorLoader(this, baseUri,
-                VIDEO_SUMMARY_PROJECTION, null, null,
-                MediaStore.Video.VideoColumns.DURATION + " COLLATE LOCALIZED DESC");
+                AUDIO_SUMMARY_PROJECTION, null, null,
+                MediaStore.Audio.AudioColumns.DURATION + " COLLATE LOCALIZED DESC");
     }
 
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
