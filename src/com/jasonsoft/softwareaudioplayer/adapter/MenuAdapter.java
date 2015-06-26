@@ -92,7 +92,7 @@ public class MenuAdapter extends CursorAdapter {
 //        android.util.Log.d("jason", "Album path:" + path);
 
 //        long userId = cursor.getLong(cursor.getColumnIndex(AudioContact.COLUMN_CONTACT));
-        long origId = cursor.getInt(cursor.getColumnIndex(AudioColumns._ID));
+        long origId = cursor.getInt(cursor.getColumnIndex(AudioColumns.ALBUM_ID));
         loadThumbnail(origId, holder.thumbnailView);
     }
 //    @Override

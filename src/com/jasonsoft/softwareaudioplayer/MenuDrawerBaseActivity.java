@@ -38,6 +38,7 @@ public abstract class MenuDrawerBaseActivity extends FragmentActivity implements
             MediaStore.MediaColumns.TITLE,
             MediaStore.Audio.AudioColumns.ARTIST,
             MediaStore.Audio.AudioColumns.DURATION,
+            MediaStore.Audio.AudioColumns.ALBUM_ID,
             MediaStore.MediaColumns.DATA
     };
 
